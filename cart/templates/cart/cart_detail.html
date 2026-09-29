@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>سبد خرید</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>محصول</th>
+            <th>تعداد</th>
+            <th>قیمت واحد</th>
+            <th>عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product_id, item in cart %}
+        <tr>
+            <td>{{ product_id }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.price }}</td>
+            <td>
+                <a href="#">حذف</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<p>جمع کل: {{ cart.get_total_price }}</p>
+
+{% endblock %}
