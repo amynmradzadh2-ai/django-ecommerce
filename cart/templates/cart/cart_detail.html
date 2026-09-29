@@ -1,31 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>سبد خرید</h2>
-
-<table>
-    <thead>
-        <tr>
-            <th>محصول</th>
-            <th>تعداد</th>
-            <th>قیمت واحد</th>
-            <th>عملیات</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for product_id, item in cart %}
-        <tr>
-            <td>{{ product_id }}</td>
-            <td>{{ item.quantity }}</td>
-            <td>{{ item.price }}</td>
-            <td>
-                <a href="#">حذف</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-<p>جمع کل: {{ cart.get_total_price }}</p>
-
+<div class="container">
+    <h2 class="mb-4" style="color:#fff; font-weight:700;">سبد خرید</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>عکس</th>
+                <th>محصول</th>
+                <th>تعداد</th>
+                <th>قیمت واحد</th>
+                <th>عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product_id, item in cart %}
+            <tr>
+                <td><img src="{{ item.product.image.url }}" width="50" style="border-radius:8px;"></td>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.price }}</td>
+                <td>
+                    <a href="{% url 'cart:cart_remove' product_id %}">حذف</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p class="mt-3" style="color:#fff; font-weight:600;">جمع کل: {{ cart.get_total_price }}</p>
+</div>
 {% endblock %}

@@ -15,25 +15,25 @@ class User(AbstractBaseUser):
     objects = UserManager()
 
     USERNAME_FIELD = 'phone_number'
-    REQUIRED_FIELDS = ['email' , 'full_name']
+    REQUIRED_FIELDS = ['email', 'full_name']
 
     def __str__(self):
         return self.email
-    def has_perm(self , perm , obj=None):
+
+    def has_perm(self, perm, obj=None):
         return True
+
     def has_module_perms(self, app_label):
         return True
 
     def has_staff(self):
-            return self.is_staff
-
-class otpcodes(models.Model):
-     phone_number = models.CharField(max_length=11, unique=True)
-     code = models.CharField(max_length=11, unique=True)
-     created = models.DateTimeField(auto_now_add=True)
-     def __str__(self):
-         return f"{self.phone_number} - {self.code} - {self.created}"
+        return self.is_staff
 
 
+class EmailOTP(models.Model):
+    email = models.EmailField()
+    code = models.CharField(max_length=6)
+    created = models.DateTimeField(auto_now_add=True)
 
-
+    def __str__(self):
+        return f"{self.email} - {self.code}"

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="profile-header">
+        <div class="profile-avatar">{{ profile_user.full_name|slice:":1" }}</div>
+        <div>
+            <h2 class="profile-name">{{ profile_user.full_name }}</h2>
+            <p class="profile-email">{{ profile_user.email }}</p>
+        </div>
+    </div>
+
+    <div class="profile-stats">
+        <div class="stat-card">
+            <div class="stat-value">{{ cart_items_count }}</div>
+            <div class="stat-label">آیتم در سبد خرید</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">فعال</div>
+            <div class="stat-label">وضعیت حساب</div>
+        </div>
+    </div>
+
+    <div class="profile-section">
+        <h4 class="profile-section-title">اطلاعات حساب</h4>
+        <div class="profile-info-item">
+            <span class="profile-info-label">نام کامل</span>
+            <span class="profile-info-value">{{ profile_user.full_name }}</span>
+        </div>
+        <div class="profile-info-item">
+            <span class="profile-info-label">ایمیل</span>
+            <span class="profile-info-value">{{ profile_user.email }}</span>
+        </div>
+        <div class="profile-info-item">
+            <span class="profile-info-label">شماره موبایل</span>
+            <span class="profile-info-value">{{ profile_user.phone_number }}</span>
+        </div>
+    </div>
+
+    <div class="profile-actions">
+        <a href="{% url 'cart:cart_detail' %}" class="btn btn-primary">مشاهده سبد خرید</a>
+        <a href="{% url 'account:user_logout' %}" class="btn btn-outline-danger">خروج از حساب</a>
+    </div>
+</div>
+{% endblock %}

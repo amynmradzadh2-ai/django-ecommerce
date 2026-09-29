@@ -1,2 +1,20 @@
-.env git add .gitignore
-git commit -m "Remove env from tracking"
+.env
+.env.*
+!.env.example
+
+db.sqlite3
+
+__pycache__/
+*.pyc
+*.pyo
+
+.idea/
+.vscode/
+
+venv/
+env/
+.venv/
+shop-env/
+shop_env/
+
+*.log

@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <img src="{{ product.image.url }}" class="img-fluid" alt="{{ product.name }}">
+        </div>
+        <div class="col-md-7">
+            <h2>{{ product.name }}</h2>
+            <p class="text-muted">{{ product.category.name }}</p>
+            <p>{{ product.discription }}</p>
+            <h4>{{ product.price }} تومان</h4>
+            <form method="post" action="{% url 'cart:cart_add' product.id %}" class="d-flex align-items-center gap-2 mt-3">
+                {% csrf_token %}
+                <input type="number" name="quantity" value="1" min="1" class="form-control" style="width: 90px;">
+                <button type="submit" class="btn-add-cart" style="border:none;">افزودن به سبد</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
